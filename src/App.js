@@ -1,50 +1,26 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import Header from "./components/header";
+import Footer from "./components/footer";
+import {Route} from 'react-router-dom'
+import {Container} from 'semantic-ui-react'
+import HomePage from "./pages/HomePage";
+import 'semantic-ui-css/semantic.min.css';
+import NewContact from "./pages/NewContact";
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: "EmreKARa"
-        };
 
-    }
-
-    componentWillMount() {
-        console.log("componentWillMount");
-        setTimeout(() => {
-            this.setState({name: "Emre"})
-        }, 2000)
-    }
-
-    componentDidMount() {
-        console.log("componentDidMount");
-    }
-
-    componentWillReceiveProps(nextProps, nextContext) {
-        
-    }
 
     render() {
-        console.log("Render");
         return (
             <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo"/>
-                    <p>
-                        {this.state.name}
-                    </p>
-                    <a
-                        className="App-link"
-                        href="https://reactjs.org"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        Learn Reacts
-                    </a>
-                </header>
+                <Header/>
+                <Container text>
+                <Route  path='/' exact component={HomePage}/>
+                <Route path='/contact' exact component={NewContact}/>
+                <Route path='/contact/:id' exact component={NewContact}/>
+                </Container>
+                <Footer/>
             </div>
         );
     }
